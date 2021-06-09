@@ -2,28 +2,8 @@ import React from "react";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 
-export default function Expenses() {
-  const expenses = [
-    {
-      id: 1,
-      title: "DevNation - Payment",
-      amount: 5000,
-      date: new Date(2021, 6, 7),
-    },
-    {
-      id: 2,
-      title: "HBR Subscription",
-      amount: 4000,
-      date: new Date(2021, 6, 7),
-    },
-    {
-      id: 3,
-      title: "Books from Amazon",
-      amount: 1200,
-      date: new Date(2021, 6, 7),
-    },
-    { id: 4, title: "Tennis Balls", amount: 5000, date: new Date(2021, 6, 7) },
-  ];
+export default function Expenses(props) {
+  const expenses = props.data;
   return (
     <div className="expenses">
       <ExpenseItem
