@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -23,10 +24,13 @@ const App = () => {
     { id: 4, title: "Tennis Balls", amount: 5000, date: new Date(2021, 6, 7) },
   ];
 
+  const onAddExpenseHandler = (onAddExpense) => {
+    console.log(onAddExpense);
+  };
+
   return (
     <div>
-      <h1>Hello World!</h1>
-      <h2>Welcome to Reactjs</h2>
+      <NewExpense onAddExpense={onAddExpenseHandler} />
       <Expenses data={expenses} className={expenses} />
     </div>
   );
