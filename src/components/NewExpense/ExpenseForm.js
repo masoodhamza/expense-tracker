@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-export default function ExpenseForm(props) {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
   const titleChangeHandler = (e) => {
-    console.log(`title: ${e.target.value}`);
     setEnteredTitle(e.target.value);
   };
 
   const amountChangeHandler = (e) => {
-    console.log(`amount: ${e.target.value}`);
     setEnteredAmount(e.target.value);
   };
 
   const dateChangeHandler = (e) => {
-    console.log(`date: ${e.target.value}`);
     setEnteredDate(e.target.value);
   };
 
@@ -27,15 +24,14 @@ export default function ExpenseForm(props) {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: enteredDate,
+      date: new Date(enteredDate),
     };
-
-    console.log(expenseData);
-    props.onSaveExpenseData(expenseData);
 
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+
+    props.onSaveExpenseData(expenseData);
   };
 
   return (
@@ -54,7 +50,7 @@ export default function ExpenseForm(props) {
           <label>Amount</label>
           <input
             type="number"
-            min="0"
+            min="0.01"
             step="0.01"
             value={enteredAmount}
             onChange={amountChangeHandler}
@@ -66,10 +62,15 @@ export default function ExpenseForm(props) {
           <input type="date" value={enteredDate} onChange={dateChangeHandler} />
         </div>
 
-        <div className="new-expense__control">
+        <div className="new-expense__actions">
+          <button type="button" onClick={props.onCancel}>
+            Cancel
+          </button>
           <button type="submit">Add Your Expense</button>
         </div>
       </div>
     </form>
   );
-}
+};
+
+export default ExpenseForm;
